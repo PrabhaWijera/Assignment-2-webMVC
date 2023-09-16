@@ -1,6 +1,7 @@
 package com.example.mvc_assigment_2_new.controller;
 
 
+import com.example.mvc_assigment_2_new.Res.ResponseController;
 import com.example.mvc_assigment_2_new.dto.TechDto;
 import com.example.mvc_assigment_2_new.service.TechService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +35,14 @@ public class TechController {
 
 
     @PostMapping(path = "/save",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public void saveTech_lead(@RequestBody TechDto techDto){
-        techService.save(techDto);
+    public ResponseController save(@RequestBody TechDto techDto) {
+        return techService.save(techDto);
+
     }
 
-    @PutMapping(path = "update",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@RequestBody TechDto techDto){
-        techService.update(techDto);
+    @PutMapping(path = "/update",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseController update(@RequestBody TechDto techDto){
+       return techService.update(techDto);
     }
 /*
     @DeleteMapping("/delete/{id}")
@@ -53,7 +55,20 @@ public class TechController {
         return ResponseEntity.ok("Tech entry deleted successfully");
     }*/
 
+    @GetMapping(path = "/search", params = "searchM", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseController search(@RequestParam("searchM") String techLeadId) {
+        return techService.search(techLeadId);
+    }
 
+    @DeleteMapping(path = "/delete", params = "deleteM", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseController delete(@RequestParam("deleteM") String techLeadId) {
+        return techService.delete(techLeadId);
+    }
+
+    @GetMapping(path = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseController getAll() {
+        return techService.getall();
+    }
 
 
 }

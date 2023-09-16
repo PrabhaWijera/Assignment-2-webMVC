@@ -5,10 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class TechDto {
+public class TechDto implements Serializable, SuperDto {
     private String T_Id;
     private String Name;
     private String Email;

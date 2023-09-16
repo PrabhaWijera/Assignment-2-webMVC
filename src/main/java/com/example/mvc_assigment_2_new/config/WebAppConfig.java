@@ -1,6 +1,7 @@
 package com.example.mvc_assigment_2_new.config;
 
 
+import com.example.mvc_assigment_2_new.Res.ResponseController;
 import com.example.mvc_assigment_2_new.controller.TechController;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackageClasses = {TechController.class})
+@ComponentScan(basePackageClasses = {TechController.class, ResponseController.class})
 public class WebAppConfig {
 
 
